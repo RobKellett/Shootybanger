@@ -1,0 +1,23 @@
+{
+  "name": "shootybanger",
+  "version": "0.0.1",
+  "dependencies": {
+    "websocket": "1.0.22"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "description": "bang bang pow zoowop",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RobKellett/Shootybanger.git"
+  },
+  "author": "Pi Lanningham and Rob Kellett",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobKellett/Shootybanger/issues"
+  },
+  "homepage": "https://github.com/RobKellett/Shootybanger"
+}

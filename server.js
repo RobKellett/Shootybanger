@@ -32,13 +32,13 @@ gameServer.on('request', function(request) {
   var connection = request.accept('echo-protocol', request.origin);
   console.log("Connection accepted.");
   connection.on('message', function(msg) {
-    if(message.type === 'binary') {
+    if(msg.type === 'binary') {
       console.log("Binary not supported.");
       connection.sendUTF("Binary not supported.");
       connection.close();
     }
-    console.log("Message received: " + msg);
-    connection.sendUTF(message.utf8Data);
+    console.log("Message received: " + msg.utf8Data);
+    connection.sendUTF(msg.utf8Data);
   });
   connection.on('close', function(reasonCode, description) {
     console.log("Peer closed connection.");

@@ -1,46 +1,14 @@
-var WebSocketServer = require('websocket').server;
-var http = require('http');
+var express = require('express');
+var app = express();
+var ws = require('express-ws')(app);
 
-/* Static server */
-var server = http.createServer(function(request, response) {
-  console.log("Request received for " + request.url);
-  response.writeHead(404); // TODO: Serve static content?
-  response.end();
-});
 var port = 8089;
-server.listen(port, function() {
-  console.log("Server is listening on port " + port);
-});
-/************/
-
-gameServer = new WebSocketServer({
-  httpServer: server,
-  autoAcceptConnections: false
-});
-
-function originIsAllowed(origin) {
-  return true; // TODO: Security?
-}
-
-gameServer.on('request', function(request) {
-  if(!originIsAllowed(request.origin)) {
-    request.reject();
-    console.log("Connection from origin " + request.origin + " rejected.");
-    return;
-  }
-
-  var connection = request.accept('echo-protocol', request.origin);
-  console.log("Connection accepted.");
-  connection.on('message', function(msg) {
-    if(msg.type === 'binary') {
-      console.log("Binary not supported.");
-      connection.sendUTF("Binary not supported.");
-      connection.close();
-    }
-    console.log("Message received: " + msg.utf8Data);
-    connection.sendUTF(msg.utf8Data);
-  });
-  connection.on('close', function(reasonCode, description) {
-    console.log("Peer closed connection.");
+app.use('/', express.static(__dirname + '/public'));
+app.listen(process.env.port || port);
+app.ws('/socket', function(ws, req) {
+  console.log('Received websocket connection.');
+  ws.on('message', function(msg) {
+    console.log('Received websocket message: ' + msg);
+    ws.send('echo: ' + msg);
   });
 });

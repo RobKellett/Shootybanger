@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     socket.onopen = function() {
         console.log("Connected.");
+        socket.send(JSON.stringify({
+          "kind": "new"
+        }));
     };
 
     socket.onmessage = function(event) {

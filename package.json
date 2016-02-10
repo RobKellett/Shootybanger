@@ -2,8 +2,9 @@
   "name": "shootybanger",
   "version": "0.0.1",
   "dependencies": {
-    "express-ws": "1.0.0-rc.2",
-    "express": "3.x"
+    "express-ws": "1.0.x",
+    "express": "3.x",
+    "guid": "0.0.x"
   },
   "scripts": {
     "start": "node server.js"

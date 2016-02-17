@@ -7,16 +7,30 @@
             canvas {
                 position: absolute;
                 left: 0;
-                top: 0;
+                top: 50px;
                 width: 100vw;
                 height: 100vh;
             }
         </style>
         <script src="shootybanger.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
     </head>
     <body>
-        <canvas>
-            Please upgrade your browser to play Shootybanger.
-        </canvas>
+
+      <div id="gameForm">
+        <label>Game: </label>
+        <input id="gameId" type="text" placeholder="Game ID"/>
+        <button id="join">Join</button>
+        <button id="newGame">New</button>
+      </div>
+
+      <canvas>
+          Please upgrade your browser to play Shootybanger.
+      </canvas>
+
+      <script>
+        $("#join").click(() => joinGame($("#gameId").val()));
+        $("#newGame").click(() => newGame());
+      </script>
     </body>
 </html>
